@@ -49,3 +49,7 @@ export default {
     name: 'AddChallenge'
 }
 </script>
+
+<style>
+
+</style>

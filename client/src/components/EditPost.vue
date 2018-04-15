@@ -6,7 +6,7 @@
           <input type="text" name="title" placeholder="TITLE" v-model="title">
         </div>
         <div>
-          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description"></textarea>
+          <textarea rows="15" cols="15" placeholder="DESCRIPTION" v-model="description" value="description"></textarea>
         </div>
         <div>
           <button class="app_post_btn" @click="updatePost">Update</button>
@@ -30,12 +30,12 @@ export default {
     this.getPost()
   },
   methods: {
-    async getPost () {
-      const response = await PostsService.getPost({
+    async getPost() {
+      let response = await PostsService.getPost({
         id: this.$route.params.id
-      })
-      this.title = response.data.title
-      this.description = response.data.description
+      });
+      this.title = response.data.title;
+      this.description = response.data.description;
     },
     async updatePost () {
       await PostsService.updatePost({
@@ -48,7 +48,7 @@ export default {
   }
 }
 </script>
-<style type="text/css">
+<style scoped>
 .form input, .form textarea {
   width: 500px;
   padding: 10px;
