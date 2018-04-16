@@ -10,8 +10,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 var Post = require("../models/post");
+var Github = require("../models/challenge.js");
 
 mongoose.connect('mongodb://localhost:27017/posts');
+mongoose.connect('mongodb://localhost:27017/challenges');
 
 var db = mongoose.connection;
 
