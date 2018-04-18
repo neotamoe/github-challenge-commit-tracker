@@ -41,17 +41,17 @@ export default new Router({
       component: EditPost
     },
     {
-      path: '/current',
+      path: '/challenges/current',
       name: 'Current Challenge',
       component: CurrentChallenge
     },
     {
-      path: '/add',
+      path: '/challenges/add',
       name: 'Add Challenge',
       component: AddChallenge
     },
     {
-      path: '/previous',
+      path: '/challenges/previous',
       name: 'Past Challenges',
       component: PastChallenges
     }
