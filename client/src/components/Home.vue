@@ -7,26 +7,26 @@
         <div class="field">
             <label class="label">Email</label>
             <div class="control">
-                <input class="input" type="email" placeholder="name@gmail.com">
+                <input class="input" type="email" v-model="email" placeholder="name@gmail.com">
             </div>
         </div>
         <div class="field">
             <label class="label">Password</label>
             <div class="control">
-                <input class="input" type="password" placeholder="password">
+                <input class="input" type="password" v-model="password" placeholder="password">
             </div>
         </div>
 
         <div class="field is-grouped">
             <p class="control">
-                <a class="button is-primary">
+                <button class="button is-primary" @click="login">
                 Login
-                </a>
+                </button>
             </p>
             <p class="control">
-                <a class="button is-info">
+                <button class="button is-info" @click="register">
                 Register
-                </a>
+                </button>
             </p>
         </div>
     </div>
@@ -35,6 +35,21 @@
 
 <script>
 export default {
-    name: 'Home'
+    name: 'Home',
+    data() {
+        return {
+            email: '',
+            password:'',
+        }
+    },
+    methods: {
+        login() {
+            console.log('login button clicked: email--> ' + this.email + ' password--> ' + this.password);
+        },
+        register() {
+            console.log('register button clicked: email--> ' + this.email + ' password--> ' + this.password);
+        }
+
+    }
 }
 </script>

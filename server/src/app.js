@@ -23,6 +23,56 @@ db.once("open", function (callback) {
     console.log("Connection Succeeded");
 });
 
+// // create a new user
+// var testUser = new Github.Admin({
+//     username: 'jmar777',
+//     password: 'Password123'
+// });
+
+// // save user to database
+// testUser.save(function(err) {
+//     if (err) throw err;
+// });
+
+// // fetch user and test password verification
+// Github.Admin.findOne({ username: 'jmar777' }, function(err, user) {
+//     if (err) throw err;
+
+//     // test a matching password
+//     user.comparePassword('Password123', function(err, isMatch) {
+//         if (err) throw err;
+//         console.log('Password123:', isMatch); // -&gt; Password123: true
+//     });
+
+//     // test a failing password
+//     user.comparePassword('123Password', function(err, isMatch) {
+//         if (err) throw err;
+//         console.log('123Password:', isMatch); // -&gt; 123Password: false
+//     });
+// });
+
+app.post('/challenges/add', (req, res) => {
+    var db = req.db;
+    var name = req.body.name;
+    var start_date = req.body.start_date;
+    var end_date = req.body.end_date;
+    var newChallenge = new Github.Challenge({
+        name: title,
+        start_date: start_date,
+        end_date: end_date,
+        current: true
+    })
+
+    newChallenge.save(function (error) {
+        if (error) {
+            console.log(error)
+        }
+        res.send({
+            success: true,
+            message: 'Challenge saved successfully!'
+        })
+    })
+})
 
 // Fetch all posts
 app.get('/posts', (req, res) => {

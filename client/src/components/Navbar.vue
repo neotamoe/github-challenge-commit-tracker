@@ -13,13 +13,13 @@
       <router-link class="navbar-item" to="/posts">
         Posts
       </router-link>
-      <router-link class="navbar-item" to="/current">
+      <router-link class="navbar-item" to="/challenges/current">
         Current Challenge
       </router-link>
-      <router-link class="navbar-item" to="/add">
+      <router-link class="navbar-item" to="/challenges/add">
         Add a Challenge
       </router-link>
-     <router-link class="navbar-item" to="/past">
+     <router-link class="navbar-item" to="/challenges/past">
         Past Challenges
       </router-link>
     </div>

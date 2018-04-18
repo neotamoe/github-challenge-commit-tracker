@@ -2,6 +2,7 @@
     <h1>PLACEHOLDER</h1>
 </template>
 
+<script>
 // componentDidMount() {    
 //     axios
 //       .get('https://github.com/users/lukeschlangen/contributions',{
@@ -14,7 +15,6 @@
 //       })
 //       .catch(err => console.log(err));
 //   }
-
 //   streakCounter(body) {
 //     const $ = cheerio.load(body);
 //     var data = [];
@@ -24,10 +24,8 @@
 //             date: new Date($(element).attr('data-date'))
 //         })
 //     });
-
 //     var yesterday = new Date();
 //     yesterday.setDate(yesterday.getDate() - 1);
-
 //     data = data.sort(function(a, b) {
 //         return new Date(b.date) - new Date(a.date);
 //     }).filter(function(el) {
@@ -40,9 +38,7 @@
 //         }
 //         streakCount++
 //     }
-
 //     console.log('streakCount:', streakCount);
-
 //   }
 
 
@@ -103,3 +99,4 @@
 // app.listen(port, function() {
 //     console.log('listening on port', port);
 // });
+</script>
