@@ -5,14 +5,23 @@
             <div class="field">
                 <label class="label">Enter Challenge Name</label>
                 <div class="control">
-                    <input class="input" type="text" placeholder="i.e. post-Psi, April 2018" v-model="name">
+                    <input  v-model="challenge_name" class="input" type="text" placeholder="i.e. post-Psi, April 2018">
                 </div>
             </div>
-            
+            <div class="field">
+                <label class="label">Enter Start Date</label>
+                <div class="control">
+                    <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="start_date">
+                </div>
+            </div>
             <div class="field">
                 <button class="button is-primary" @click="addChallenge()">Add Challenge</button>
             </div>
-
+            <div class="field" v-if="challengeEntered">
+                <p>Challenge Name: {{challenge_name}}</p>
+                <p>Start Date: {{start_date}}</p>
+                <p>{{end_date}}</p>
+            </div>
 
             <h1 class="title is-3">Add Participant</h1>            
 
@@ -51,21 +60,25 @@ export default {
     name: 'AddChallenge',
     data() {
         return {
-            name: '',
-            start_date: new Date(),
-            end_date: new Date () + 30,
+            challenge_name: '',
+            start_date: '',
+            end_date: '',
             current: false,
-            // participant: {
-                first_name: '',
-                last_name: '',
-                github_username: '',
-            // },
+            first_name: '',
+            last_name: '',
+            github_username: '',
             participants: [],
+            challengeEntered: false,
+            end_date: ''
         }
     },
     methods: {
         async addChallenge () {
-            console.log('add challenge button clicked: name: '+ this.name);
+            console.log('add challenge button clicked: name: '+ this.challenge_name);
+            this.challengeEntered = true;
+            this.$nextTick(function () {
+              console.log('this should update start_date');
+            });
             // await ChallengeService.addChallenge({
             //     name: this.name,
             //     start_date: this.start_date,
@@ -73,6 +86,7 @@ export default {
             //     current: this.current
             // })
         // this.$router.push({ name: 'Home' })
+            this.end_date = this.getEndDate();
             this.name = '';
         },
         addParticipant() {
@@ -84,10 +98,17 @@ export default {
             console.log('addParticipant button clicked!');
             console.log('first: ' + this.first_name + ' last: ' + this.last_name + ' github name: ' + this.github_username);
             console.log(participant);
-            // this.participants.push(participant);
+            this.participants.push(participant);
             this.first_name = '';
             this.last_name = '';
             this.github_username = '';
+        },
+        getEndDate() {          
+            var future = this.start_date;
+            console.log('future before manipulation (should equal start date)' + future);
+            future.setDate(future.getDate() + 30);
+            console.log(future);
+            return future.toLocaleDateString('en-US');
         }
     }
 }
