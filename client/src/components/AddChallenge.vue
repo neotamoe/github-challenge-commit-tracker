@@ -26,9 +26,9 @@
                 </div>
             </div>
             <div class="field" v-if="challengeEntered">
-                <p>Challenge Name: {{challenge_name}}</p>
-                <p>Start Date: {{start_date}}</p>
-                <p>End Date: {{end_date}}</p>
+                <p><b>Challenge Name:</b> {{challenge_name}}</p>
+                <p><b>Start Date:</b> {{start_date}}</p>
+                <p><b>End Date:</b> {{end_date}}</p>
                 <div class="field">
                     <button class="button is-primary" @click="editChallenge()">Edit</button>
                 </div>
@@ -61,6 +61,27 @@
                     <button class="button is-primary" @click="addParticipant()">Add Name</button>
                 </div>
             </div>
+            <table class="table is-striped is-hoverable is-bordered">
+            <thead>
+                <tr>
+                    <th class="title is-4" colspan=4>Github Challenge Participants</th>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Github User Name</th>
+                    <th>Commits</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr v-for="participant in participants" :key="participant.id">
+                        <td>{{participant.first_name}}</td>
+                        <td>{{participant.last_name}}</td>
+                        <td>{{participant.github_username}}</td>
+                        <td>{{participant.commits}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -98,10 +119,14 @@ export default {
             // this.end_date = this.getEndDate();
         },
         addParticipant() {
+            if(this.first_name==='' || this.last_name==='' || this.github_username===''){
+                return;
+            }
             let participant = {
                 first_name: this.first_name,
                 last_name: this.last_name,
-                github_username: this.github_username
+                github_username: this.github_username,
+                commits: 0,
             };
             console.log('addParticipant button clicked!');
             console.log('first: ' + this.first_name + ' last: ' + this.last_name + ' github name: ' + this.github_username);
