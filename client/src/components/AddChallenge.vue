@@ -19,8 +19,8 @@
             </div>
             <div class="field" v-if="challengeEntered">
                 <p>Challenge Name: {{challenge_name}}</p>
-                <p>Start Date: {{start_date}}</p>
-                <p>{{end_date}}</p>
+                <p>Start Date: {{convertStartDate()}}</p>
+                <p>End Date: {{end_date}}</p>
             </div>
 
             <h1 class="title is-3">Add Participant</h1>            
@@ -79,6 +79,7 @@ export default {
             this.$nextTick(function () {
               console.log('this should update start_date');
             });
+   
             // await ChallengeService.addChallenge({
             //     name: this.name,
             //     start_date: this.start_date,
@@ -87,6 +88,7 @@ export default {
             // })
         // this.$router.push({ name: 'Home' })
             this.end_date = this.getEndDate();
+            var start = this.start_date;
             this.name = '';
         },
         addParticipant() {
@@ -104,11 +106,15 @@ export default {
             this.github_username = '';
         },
         getEndDate() {          
-            var future = this.start_date;
+            var future = new Date(this.start_date);
             console.log('future before manipulation (should equal start date)' + future);
             future.setDate(future.getDate() + 30);
             console.log(future);
             return future.toLocaleDateString('en-US');
+        },
+        convertStartDate() {
+            var start = new Date(this.start_date);
+            return start.toLocaleDateString('en-US');
         }
     }
 }
