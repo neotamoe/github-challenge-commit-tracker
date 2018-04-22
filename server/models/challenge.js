@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var ChallengeSchema = new Schema({
-  name: String,
+  challenge_name: String,
   start_date: Date,
   end_date: Date,
   current: Boolean

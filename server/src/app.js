@@ -12,7 +12,7 @@ app.use(cors())
 var Post = require("../models/post");
 var Github = require("../models/challenge.js");
 
-mongoose.connect('mongodb://localhost:27017/posts');
+// mongoose.connect('mongodb://localhost:27017/posts');
 mongoose.connect('mongodb://localhost:27017/challenges');
 
 var db = mongoose.connection;
@@ -51,13 +51,14 @@ db.once("open", function (callback) {
 //     });
 // });
 
-app.post('/challenges/add', (req, res) => {
+app.post('/challenges', (req, res) => {
     var db = req.db;
-    var name = req.body.name;
+    var challenge_name = req.body.challenge_name;
     var start_date = req.body.start_date;
     var end_date = req.body.end_date;
+    console.log(req);
     var newChallenge = new Github.Challenge({
-        name: title,
+        challenge_name: challenge_name,
         start_date: start_date,
         end_date: end_date,
         current: true

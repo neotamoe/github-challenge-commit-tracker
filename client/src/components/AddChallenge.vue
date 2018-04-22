@@ -22,7 +22,8 @@
                     </div>
                 </div>
                 <div class="field">
-                    <button class="button is-primary" @click="addChallenge()">OK</button>
+                    <button class="button is-primary" @click="addChallengeInfo()">OK</button>
+                    <p v-if="challengeError && (challenge_name==='' || start_date==='' || end_date==='')" class="error">You must enter challenge name, start date and end date.</p>
                 </div>
             </div>
             <div class="field" v-if="challengeEntered">
@@ -77,11 +78,14 @@
                     <tr v-for="participant in participants" :key="participant.id">
                         <td>{{participant.first_name}}</td>
                         <td>{{participant.last_name}}</td>
-                        <td>{{participant.github_username}}</td>
+                        <td>{{participant.github_username}</td>
                         <td>{{participant.commits}}</td>
                     </tr>
                 </tbody>
             </table>
+            <div class="field">
+                <button class="button is-primary" @click="saveChallengeAndParticipants()" >Save Challenge And Participants</button>
+            </div>
         </div>
     </div>
 </template>
@@ -102,21 +106,18 @@ export default {
             github_username: '',
             participants: [],
             challengeEntered: false,
-            end_date: ''
+            challengeError: false,
+            participantError: false,
         }
     },
     methods: {
-        async addChallenge () {
+        addChallengeInfo() {
+            if(this.challenge_name==='' || this.start_date==='' || this.end_date===''){
+                this.challengeError = true;
+                return;
+            }            
             console.log('add challenge button clicked: name: '+ this.challenge_name);
             this.challengeEntered = true;   
-            // await ChallengeService.addChallenge({
-            //     name: this.name,
-            //     start_date: this.start_date,
-            //     end_date: this.end_date,
-            //     current: this.current
-            // })
-        // this.$router.push({ name: 'Home' })
-            // this.end_date = this.getEndDate();
         },
         addParticipant() {
             if(this.first_name==='' || this.last_name==='' || this.github_username===''){
@@ -138,11 +139,26 @@ export default {
         },
         editChallenge() {
             this.challengeEntered = false;
+        },
+        async saveChallengeAndParticipants(){
+            await ChallengeService.addChallenge({
+                challenge_name: this.challenge_name,
+                start_date: this.start_date,
+                end_date: this.end_date,
+                current: this.current,
+            });
+            this.$router.push({ name: 'Home' });
         }
     }
 }
 </script>
 
 <style>
+.error {
+    color: red;
+    font-weight: bold;
+}
 
 </style>
+
+
