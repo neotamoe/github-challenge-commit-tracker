@@ -52,11 +52,11 @@ db.once("open", function (callback) {
 // });
 
 app.post('/challenges', (req, res) => {
-    var db = req.db;
+    // var db = req.db;
     var challenge_name = req.body.challenge_name;
     var start_date = req.body.start_date;
     var end_date = req.body.end_date;
-    console.log(req);
+    console.log(req.body);
     var newChallenge = new Github.Challenge({
         challenge_name: challenge_name,
         start_date: start_date,
@@ -74,6 +74,21 @@ app.post('/challenges', (req, res) => {
         })
     })
 })
+
+app.post('/participants', (req, res) => {
+    var collection = db.collection('participants');
+    var participantsArray = req.body.participants;
+    collection.insertMany(participantsArray, {ordered: false, rawResult: false}, function (error) {
+        if (error) {
+            console.log(error)
+        }
+        res.send({
+            success: true,
+            message: 'Participants saved successfully!'
+        })
+    })
+})
+
 
 // Fetch all posts
 app.get('/posts', (req, res) => {

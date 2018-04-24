@@ -21,6 +21,7 @@ import Tab from './components/Tab.vue'
 import Home from './components/Home.vue'
 import AddChallenge from './components/AddChallenge.vue'
 import Posts from './components/Posts.vue'
+import AddParticipants from './components/AddParticipants.vue'
 
 export default {
   name: 'app',
@@ -32,7 +33,8 @@ export default {
     Tab,
     Home,
     AddChallenge,
-    Posts
+    Posts,
+    AddParticipants
   }
 }
 </script>
