@@ -19,7 +19,10 @@
       <router-link class="navbar-item" to="/challenges/add">
         Add a Challenge
       </router-link>
-     <router-link class="navbar-item" to="/challenges/past">
+      <router-link class="navbar-item" to="/participants/add">
+        Add Participants
+      </router-link>
+      <router-link class="navbar-item" to="/challenges/past">
         Past Challenges
       </router-link>
     </div>
