@@ -7,6 +7,7 @@ import EditPost from '@/components/EditPost'
 import CurrentChallenge from '@/components/CurrentChallenge'
 import PastChallenges from '@/components/PastChallenges'
 import AddChallenge from '@/components/AddChallenge'
+import AddParticipants from '@/components/AddParticipants'
 
 
 Vue.use(Router)
@@ -49,6 +50,11 @@ export default new Router({
       path: '/challenges/add',
       name: 'Add Challenge',
       component: AddChallenge
+    },
+    {
+      path: '/participants/add',
+      name: 'Add Participants',
+      component: AddParticipants
     },
     {
       path: '/challenges/previous',
