@@ -32,21 +32,23 @@
             <table class="table is-striped is-hoverable is-bordered">
                 <thead>
                     <tr>
-                        <th class="title is-4" colspan=4>Github Challenge Participants</th>
+                        <th class="title is-4" colspan=5>Github Challenge Participants</th>
                     </tr>
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Github User Name</th>
                         <th>Commits</th>
+                        <th>Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="participant in participants" :key="participant.id">
+                    <tr v-for="(participant, index) in participants" :key="participant.id">
                         <td>{{participant.first_name}}</td>
                         <td>{{participant.last_name}}</td>
                         <td>{{participant.github_username}}</td>
                         <td>{{participant.commits}}</td>
+                        <td><i class="fa fa-edit" @click="editParticipant(participant)"></i><i class="fa fa-times" @click="deleteParticipant(index)"></i></td>
                     </tr>
                 </tbody>
             </table>
@@ -96,6 +98,15 @@ export default {
             this.first_name = '';
             this.last_name = '';
             this.github_username = '';
+        },
+        editParticipant(participant) {
+            console.log('edit participant clicked ')
+            console.log(participant);
+        },
+        deleteParticipant(index) {
+            console.log('delete participant clicked: ');
+            this.participants.splice(index,1);
+            console.log(this.participants);
         }
     }
 }
@@ -111,6 +122,9 @@ export default {
 }
 table {
     margin: 0 auto; /* or margin: 0 auto 0 auto */
+}
+i {
+    padding-left: 15px
 }
 </style>
 
