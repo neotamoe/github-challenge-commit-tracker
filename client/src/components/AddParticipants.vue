@@ -20,7 +20,7 @@
             <div class="field">
                 <label class="label">Github UserName</label>
                 <div class="control">
-                    <input class="input" type="email" placeholder="e.g. neotamoe" v-model="github_username">
+                    <input class="input" type="text" placeholder="e.g. neotamoe" v-model="github_username">
                 </div>
             </div>
             <div class="field is-grouped">
@@ -43,12 +43,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(participant, index) in participants" :key="participant.id">
+                    <tr v-if="!edit" v-for="(participant, index) in participants" :key="participant.id">
                         <td>{{participant.first_name}}</td>
                         <td>{{participant.last_name}}</td>
                         <td>{{participant.github_username}}</td>
                         <td>{{participant.commits}}</td>
                         <td><i class="fa fa-edit" @click="editParticipant(participant)"></i><i class="fa fa-times" @click="deleteParticipant(index)"></i></td>
+                    </tr>
+                    <tr v-if="edit" v-for="(participant, index) in participants" :key="participant.id">
+                        <td><input class="input" type="text" v-model="participant.first_name"></td>
+                        <td><input class="input" type="text" v-model="participant.last_name"></td>
+                        <td><input class="input" type="text" v-model="participant.github_username"></td>
+                        <td>{{participant.commits}}</td>
+                        <td><i class="fa fa-save" @click="saveParticipantChanges(participant)"></i><i class="fa fa-times" @click="deleteParticipant(index)"></i></td>
                     </tr>
                 </tbody>
             </table>
@@ -70,8 +77,10 @@ export default {
             first_name: '',
             last_name: '',
             github_username: '',
+            commits: 0,
             participants: [],
             participantError: false,
+            edit: false,
         }
     },
     methods: {
@@ -102,11 +111,17 @@ export default {
         editParticipant(participant) {
             console.log('edit participant clicked ')
             console.log(participant);
+            this.edit = true;
         },
         deleteParticipant(index) {
             console.log('delete participant clicked: ');
             this.participants.splice(index,1);
             console.log(this.participants);
+        },
+        saveParticipantChanges(participant) {
+            console.log('save participant changes clicked');
+            console.log(participant);
+            this.edit = false;
         }
     }
 }
