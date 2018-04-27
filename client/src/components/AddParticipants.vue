@@ -43,14 +43,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="!edit" v-for="(participant, index) in participants" :key="participant.id">
+                    <tr v-if="!participant.edit" v-for="(participant, index) in participants" :key="participant.id">
                         <td>{{participant.first_name}}</td>
                         <td>{{participant.last_name}}</td>
                         <td>{{participant.github_username}}</td>
                         <td>{{participant.commits}}</td>
                         <td><i class="fa fa-edit" @click="editParticipant(participant)"></i><i class="fa fa-times" @click="deleteParticipant(index)"></i></td>
                     </tr>
-                    <tr v-if="edit" v-for="(participant, index) in participants" :key="participant.id">
+                    <tr v-if="participant.edit" v-for="(participant, index) in participants" :key="participant.id">
                         <td><input class="input" type="text" v-model="participant.first_name"></td>
                         <td><input class="input" type="text" v-model="participant.last_name"></td>
                         <td><input class="input" type="text" v-model="participant.github_username"></td>
@@ -80,7 +80,6 @@ export default {
             commits: 0,
             participants: [],
             participantError: false,
-            edit: false,
         }
     },
     methods: {
@@ -93,6 +92,7 @@ export default {
                 last_name: this.last_name,
                 github_username: this.github_username,
                 commits: 0,
+                edit: false,
             };
             this.participants.push(participant);
             this.clearFields();
@@ -111,7 +111,7 @@ export default {
         editParticipant(participant) {
             console.log('edit participant clicked ')
             console.log(participant);
-            this.edit = true;
+            participant.edit = true;
         },
         deleteParticipant(index) {
             console.log('delete participant clicked: ');
@@ -121,7 +121,7 @@ export default {
         saveParticipantChanges(participant) {
             console.log('save participant changes clicked');
             console.log(participant);
-            this.edit = false;
+            participant.edit = false;
         }
     }
 }
