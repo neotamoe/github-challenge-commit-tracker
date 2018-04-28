@@ -21,6 +21,13 @@
                         <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="end_date">
                     </div>
                 </div>
+                <div class="">
+                    <label class="label">Select Participants</label>            
+                    <label class="checkbox checkbox-space" v-for="participant in participants" :key="participant.id">
+                    <input type="checkbox">
+                    {{participant.first_name}} {{participant.last_name}}
+                    </label>
+                </div>
                 <div class="field">
                     <button class="button is-primary" @click="saveChallenge()">OK</button>
                     <p v-if="challengeError && (challenge_name==='' || start_date==='' || end_date==='')" class="error">You must enter challenge name, start date and end date.</p>
@@ -43,7 +50,11 @@ export default {
             current: false,
             challengeEntered: false,
             challengeError: false,
+            participants: []
         }
+    },
+    mounted () {
+        this.getAllParticipants();
     },
     methods: {
         async saveChallenge(){
@@ -58,6 +69,11 @@ export default {
                 current: this.current,
             });
             this.$router.push({ name: 'Add Participants' });
+        },
+        async getAllParticipants() {
+            const response = await ChallengeService.getAllParticipants();
+            console.log(response);
+            this.participants = response.data.participants;
         }
     }
 }
@@ -67,6 +83,10 @@ export default {
 .error {
     color: red;
     font-weight: bold;
+}
+
+.checkbox-space {
+    margin-right: 15px;
 }
 
 </style>

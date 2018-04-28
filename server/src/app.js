@@ -89,6 +89,21 @@ app.post('/participants', (req, res) => {
     })
 })
 
+// Fetch all participants
+app.get('/participants', (req, res) => {
+    Github.Participant.find({}, function (error, participants) {
+        console.log(participants)
+        if (error) {
+            console.error(error);
+        }
+        res.send({
+            participants: participants
+        })
+    }).sort({
+        first_name: 1,
+        last_name: 1,
+    })
+})
 
 // Fetch all posts
 app.get('/posts', (req, res) => {

@@ -11,6 +11,9 @@ export default {
   addParticipants(params) {
     return Api().post('participants', params)
   },
+  getAllParticipants(params) {
+    return Api().get('participants', params)
+  },
   updateChallenge (params) {
     return Api().put('challenges/' + params.id, params)
   },  
