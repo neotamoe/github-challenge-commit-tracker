@@ -105,6 +105,15 @@ app.get('/participants', (req, res) => {
     })
 })
 
+app.put('/participants', (req, res) => {
+    // Github.Participant.findOne({}, function (error, participants) {
+    //     if(error) {
+    //         console.error(error);
+    //     }
+    //     res.send()
+    // })
+})
+
 // Fetch all posts
 app.get('/posts', (req, res) => {
     Post.find({}, 'title description', function (error, posts) {

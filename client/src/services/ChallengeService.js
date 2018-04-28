@@ -22,5 +22,8 @@ export default {
   },
   deleteChallenge (id) {
     return Api().delete('challenges/' + id)
+  },
+  saveParticipantToChallenge(params) {
+      return Api().put('participants/')
   }
 }

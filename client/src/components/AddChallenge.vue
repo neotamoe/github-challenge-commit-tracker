@@ -24,7 +24,7 @@
                 <div class="">
                     <label class="label">Select Participants</label>            
                     <label class="checkbox checkbox-space" v-for="participant in participants" :key="participant.id">
-                    <input type="checkbox">
+                    <input type="checkbox" :value="participant" v-model="checkedNames">
                     {{participant.first_name}} {{participant.last_name}}
                     </label>
                 </div>
@@ -50,7 +50,8 @@ export default {
             current: false,
             challengeEntered: false,
             challengeError: false,
-            participants: []
+            participants: [],
+            checkedNames: []
         }
     },
     mounted () {
@@ -62,6 +63,7 @@ export default {
                 this.challengeError = true;
                 return;
             }     
+            this.saveParticipantToChallenge();
             await ChallengeService.addChallenge({
                 challenge_name: this.challenge_name,
                 start_date: this.start_date,
@@ -74,7 +76,13 @@ export default {
             const response = await ChallengeService.getAllParticipants();
             console.log(response);
             this.participants = response.data.participants;
-        }
+        },
+        async saveParticipantToChallenge(){
+            console.log(this.checkedNames);
+            // await ChallengeService.saveParticipantToChallenge({
+            //     participants: this.participants.checked,
+            // });
+        },
     }
 }
 </script>
