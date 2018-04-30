@@ -78,10 +78,12 @@ export default {
             this.participants = response.data.participants;
         },
         async saveParticipantToChallenge(){
-            console.log(this.checkedNames);
-            // await ChallengeService.saveParticipantToChallenge({
-            //     participants: this.participants.checked,
-            // });
+            this.checkedNames.forEach(element => {
+                element.challenge.push(this.challenge_name);
+            });
+            await ChallengeService.saveParticipantToChallenge({
+                participants: this.checkedNames,
+            });
         },
     }
 }
