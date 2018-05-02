@@ -21,11 +21,11 @@
                         <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="end_date">
                     </div>
                 </div>
-                <div class="">
+                <div>
                     <label class="label">Select Participants</label>            
                     <label class="checkbox checkbox-space" v-for="participant in participants" :key="participant.id">
-                    <input type="checkbox" :value="participant" v-model="checkedNames">
-                    {{participant.first_name}} {{participant.last_name}}
+                        <input type="checkbox" :value="participant" v-model="checkedNames">
+                        {{participant.first_name}} {{participant.last_name}} ({{participant.github_username}})
                     </label>
                 </div>
                 <div class="field">
