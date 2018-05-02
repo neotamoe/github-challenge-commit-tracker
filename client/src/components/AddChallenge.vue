@@ -22,11 +22,17 @@
                     </div>
                 </div>
                 <div>
-                    <label class="label">Select Participants</label>            
-                    <label class="checkbox checkbox-space" v-for="participant in participants" :key="participant.id">
-                        <input type="checkbox" :value="participant" v-model="checkedNames">
-                        {{participant.first_name}} {{participant.last_name}} ({{participant.github_username}})
-                    </label>
+                    <label class="label">Select Participants</label> 
+                    <div class="columns"> 
+                    <ul> 
+                        <li v-for="participant in participants" :key="participant.id">         
+                            <label class="checkbox checkbox-space" >
+                                <input type="checkbox" :value="participant" v-model="checkedNames">
+                                {{participant.first_name}} {{participant.last_name}} ({{participant.github_username}})
+                            </label>
+                        </li>
+                    </ul>
+                    </div>
                 </div>
                 <div class="field">
                     <button class="button is-primary" @click="saveChallenge()">OK</button>
@@ -97,6 +103,20 @@ export default {
 
 .checkbox-space {
     margin-right: 15px;
+}
+.columns {   
+    -moz-column-width: 11.5em; /* Firefox */
+    -webkit-column-width: 11.5em; /* webkit, Safari, Chrome */
+    column-width: 11.5em;
+}
+.columns ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.columns ul li:first-child {
+    margin-top:0px;
 }
 
 </style>
