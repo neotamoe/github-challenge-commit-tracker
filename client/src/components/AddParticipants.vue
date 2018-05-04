@@ -2,7 +2,7 @@
     <div class="container">
     <div class="columns">
         <div class="column">
-            <h1 class="title is-3">Participant Information</h1>            
+            <h1 class="title is-3">Add Participant Information</h1>            
             <div class="field">
                 <label class="label">First Name</label>
                 <div class="control">
@@ -29,11 +29,9 @@
             </div>
         </div>
         <div class="column">
+            <p class="title is-3">Participants</p>
             <table class="table is-striped is-hoverable is-bordered">
                 <thead>
-                    <tr>
-                        <th class="title is-4" colspan=5>Github Challenge Participants</th>
-                    </tr>
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
