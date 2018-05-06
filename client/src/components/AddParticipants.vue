@@ -1,7 +1,7 @@
 <template>
     <div class="container">
     <div class="columns">
-        <div class="column">
+        <div class="column is-one-third">
             <h1 class="title is-3">Add Participant Information</h1>            
             <div class="field">
                 <label class="label">First Name</label>
@@ -23,12 +23,12 @@
                     <input class="input" type="text" placeholder="e.g. neotamoe" v-model="github_username">
                 </div>
             </div>
-            <div class="field is-grouped">
+            <div class="field is-grouped is-grouped-centered">
                     <button class="button is-primary control" @click="addParticipant()">Add Name</button>
                     <button class="button is-warning control" @click="clearFields()">Clear Fields</button>
             </div>
         </div>
-        <div class="column">
+        <div class="column is-two-thirds">
             <p class="title is-3">Participants</p>
             <table class="table is-striped is-hoverable is-bordered">
                 <thead>
