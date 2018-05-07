@@ -1,44 +1,50 @@
 <template>
     <div class="hero">
         <div class="hero-body">
-            <h1 class="title is-3">Challenge Information</h1>            
-            <div v-if="!challengeEntered">
-                <div class="field">
-                    <label class="label">Enter Challenge Name</label>
-                    <div class="control">
-                        <input  v-model="challenge_name" class="input" type="text" placeholder="i.e. post-Psi, April 2018">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Enter Start Date</label>
-                    <div class="control">
-                        <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="start_date">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Enter End Date</label>
-                    <div class="control">
-                        <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="end_date">
-                    </div>
-                </div>
-                <div>
-                    <label class="label">Select Participants</label> 
-                    <div class="columns"> 
-                    <ul> 
-                        <li v-for="participant in participants" :key="participant.id">         
-                            <label class="checkbox checkbox-space" >
-                                <input type="checkbox" :value="participant" v-model="checkedNames">
-                                {{participant.first_name}} {{participant.last_name}} ({{participant.github_username}})
-                            </label>
-                        </li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="field">
-                    <button class="button is-primary" @click="saveChallenge()">OK</button>
-                    <p v-if="challengeError && (challenge_name==='' || start_date==='' || end_date==='')" class="error">You must enter challenge name, start date and end date.</p>
+            <h1 class="title is-3">Challenge Information</h1>
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <div v-if="!challengeEntered">
+                        <div class="field">
+                            <label class="label">Enter Challenge Name</label>
+                            <div class="control">
+                                <input  v-model="challenge_name" class="input" type="text" placeholder="i.e. post-Psi, April 2018">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Enter Start Date</label>
+                            <div class="control">
+                                <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="start_date">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Enter End Date</label>
+                            <div class="control">
+                                <input class="input" type="date" placeholder="MM/DD/YYYY" v-model="end_date">
+                            </div>
+                        </div>    
+                    </div>    
+                </div>            
+            </div>
+            <hr />
+            <div>
+                <h2 class="title is-3">Select Participants</h2> 
+                <div class="columns"> 
+                <ul> 
+                    <li v-for="participant in participants" :key="participant.id">         
+                        <label class="checkbox checkbox-space" >
+                            <input type="checkbox" :value="participant" v-model="checkedNames">
+                            {{participant.first_name}} {{participant.last_name}} ({{participant.github_username}})
+                        </label>
+                    </li>
+                </ul>
                 </div>
             </div>
+            <div class="field">
+                <button class="button is-primary" @click="saveChallenge()">OK</button>
+                <p v-if="challengeError && (challenge_name==='' || start_date==='' || end_date==='')" class="error">You must enter challenge name, start date and end date.</p>
+            </div>
+        </div>
         </div>
     </div>
 </template>
