@@ -7,7 +7,8 @@ var ChallengeSchema = new Schema({
   challenge_name: String,
   start_date: Date,
   end_date: Date,
-  current: Boolean
+  current: Boolean,
+  participants: {type: Array}
 });
 
 var ParticipantSchema = new Schema({

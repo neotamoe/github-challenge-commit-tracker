@@ -45,7 +45,6 @@
                 <p v-if="challengeError && (challenge_name==='' || start_date==='' || end_date==='')" class="error">You must enter challenge name, start date and end date.</p>
             </div>
         </div>
-        </div>
     </div>
 </template>
 
@@ -75,12 +74,14 @@ export default {
                 this.challengeError = true;
                 return;
             }     
+            console.log(this.checkedNames);
             this.saveParticipantToChallenge();
             await ChallengeService.addChallenge({
                 challenge_name: this.challenge_name,
                 start_date: this.start_date,
                 end_date: this.end_date,
                 current: this.current,
+                participants: this.checkedNames
             });
             this.$router.push({ name: 'Add Participants' });
         },

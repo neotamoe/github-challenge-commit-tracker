@@ -56,12 +56,14 @@ app.post('/challenges', (req, res) => {
     var challenge_name = req.body.challenge_name;
     var start_date = req.body.start_date;
     var end_date = req.body.end_date;
+    var participants = req.body.participants;
     console.log(req.body);
     var newChallenge = new Github.Challenge({
-        challenge_name: challenge_name,
-        start_date: start_date,
-        end_date: end_date,
-        current: true
+        challenge_name: req.body.challenge_name,
+        start_date: req.body.start_date,
+        end_date: req.body.end_date,
+        current: req.body.current,
+        participants: req.body.participants
     })
 
     newChallenge.save(function (error) {
@@ -106,12 +108,8 @@ app.get('/participants', (req, res) => {
 })
 
 app.put('/participants', (req, res) => {
-    // Github.Participant.findOne({}, function (error, participants) {
-    //     if(error) {
-    //         console.error(error);
-    //     }
-    //     res.send()
-    // })
+    var collection = db.collection('participants');
+    // not sure yet how to do this
 })
 
 // Fetch all posts
